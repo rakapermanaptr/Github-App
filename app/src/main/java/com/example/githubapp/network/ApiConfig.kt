@@ -1,5 +1,6 @@
 package com.example.githubapp.network
 
+import com.example.githubapp.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Interceptor
@@ -20,7 +21,7 @@ class ApiConfig {
                 .build()
             val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
                 .client(client)
                 .build()
