@@ -1,5 +1,6 @@
 package com.example.githubapp.presentation.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubapp.databinding.ActivityMainBinding
 import com.example.githubapp.model.User
+import com.example.githubapp.presentation.details.UserDetailsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +21,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mainViewModel: MainViewModel
 
     private val mainAdapter = MainAdapter { user ->
-        Toast.makeText(this, user.login, Toast.LENGTH_SHORT).show()
+        val username = user.login
+
+        val intent = Intent(this, UserDetailsActivity::class.java)
+        intent.putExtra(UserDetailsActivity.USERNAME, username)
+        startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
